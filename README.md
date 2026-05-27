@@ -1,378 +1,68 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-<title>Circle Collision Detection</title>
-
-<style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
-}
-
-body{
-    background:#0f172a;
-    color:white;
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:40px;
-}
-
-.container{
-    width:100%;
-    max-width:1200px;
-}
-
-.card{
-    background:rgba(255,255,255,0.05);
-    border:1px solid rgba(255,255,255,0.08);
-    border-radius:24px;
-    padding:40px;
-    backdrop-filter:blur(10px);
-    box-shadow:
-        0 0 40px rgba(0,0,0,0.4),
-        0 0 80px rgba(59,130,246,0.15);
-}
-
-.title{
-    font-size:48px;
-    font-weight:bold;
-    margin-bottom:10px;
-
-    background:linear-gradient(
-        to right,
-        #60a5fa,
-        #a78bfa
-    );
-
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-}
-
-.subtitle{
-    color:#94a3b8;
-    line-height:1.7;
-    margin-bottom:40px;
-}
-
-/* IMAGE */
-
-.image-box{
-    width:100%;
-    margin-bottom:40px;
-    text-align:center;
-}
-
-.image-box img{
-    width:100%;
-    max-width:850px;
-    border-radius:20px;
-    border:1px solid rgba(255,255,255,0.08);
-
-    box-shadow:
-        0 0 30px rgba(96,165,250,0.2);
-}
-
-/* FORMULA */
-
-.formula-card{
-    background:#111827;
-    border-radius:20px;
-    padding:35px;
-    text-align:center;
-    margin-bottom:40px;
-    border:1px solid rgba(255,255,255,0.05);
-
-    transition:0.3s;
-}
-
-.formula-card:hover{
-    transform:translateY(-6px);
-
-    box-shadow:
-        0 0 40px rgba(96,165,250,0.25);
-}
-
-.formula-title{
-    color:#94a3b8;
-    margin-bottom:20px;
-    font-size:18px;
-}
-
-.formula{
-    font-size:36px;
-    font-weight:bold;
-    color:#60a5fa;
-}
-
-/* GRID */
-
-.grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:25px;
-    margin-bottom:40px;
-}
-
-.info-card{
-    background:#111827;
-    padding:30px;
-    border-radius:20px;
-    border:1px solid rgba(255,255,255,0.05);
-}
-
-.info-card h2{
-    color:#a78bfa;
-    margin-bottom:20px;
-}
-
-.info-card p{
-    margin-bottom:10px;
-    color:#cbd5e1;
-}
-
-/* STEP */
-
-.step-card{
-    background:#111827;
-    border-radius:20px;
-    padding:30px;
-    margin-bottom:30px;
-}
-
-.step-card h2{
-    margin-bottom:20px;
-    color:#60a5fa;
-}
-
-.step{
-    margin-bottom:25px;
-}
-
-.step h3{
-    color:#a78bfa;
-    margin-bottom:10px;
-}
-
-.code{
-    background:#020617;
-    padding:18px;
-    border-radius:14px;
-    overflow:auto;
-    color:#4ade80;
-    margin-top:10px;
-}
-
-/* RESULT */
-
-.result{
-    margin-top:25px;
-    padding:18px;
-    border-radius:16px;
-    background:#14532d;
-    color:#4ade80;
-    font-weight:bold;
-    text-align:center;
-}
+# 🟣 Circle Collision Detection
 
-/* FINAL CODE */
+Simple circle collision detection using the distance formula.
 
-.final-code{
-    background:#020617;
-    padding:30px;
-    border-radius:20px;
-    overflow:auto;
-    color:#4ade80;
-}
+---
 
-/* BADGES */
+## 📐 Formula
 
-.badges{
-    margin-top:30px;
-}
+```math
+√((x₂ - x₁)² + (y₂ - y₁)²) ≤ r₁ + r₂
+```
 
-.badge{
-    display:inline-block;
-    padding:10px 18px;
-    margin:8px;
-    border-radius:999px;
-    background:#1e293b;
-    color:#60a5fa;
-    border:1px solid rgba(255,255,255,0.08);
-}
+---
 
-/* RESPONSIVE */
+## 🖼️ Demonstration
 
-@media(max-width:850px){
+<p align="center">
+  <img src="./demo.png" width="700" alt="Circle Collision Demonstration">
+</p>
 
-    .grid{
-        grid-template-columns:1fr;
-    }
+---
 
-    .title{
-        font-size:34px;
-    }
+## 🧠 Explanation
 
-    .formula{
-        font-size:24px;
-    }
+### Circle Positions
 
-}
+```js
+Circle A = (2, 3)
+Circle B = (5, 5)
+```
 
-</style>
-</head>
+### Radii
 
-<body>
+```js
+r1 = 8
+r2 = 9
+```
 
-<div class="container">
+### Distance Calculation
 
-<div class="card">
+```js
+dx = 5 - 2 = 3
+dy = 5 - 3 = 2
 
-    <h1 class="title">
-        🟣 Circle Collision Detection
-    </h1>
+distance = Math.sqrt(dx*dx + dy*dy)
 
-    <p class="subtitle">
-        Detect collisions between two circles using the Euclidean distance formula.
-        This technique is widely used in game engines, physics simulations,
-        particle systems, and hitbox detection.
-    </p>
+distance = Math.sqrt(3*3 + 2*2)
+distance = Math.sqrt(13)
 
-    <!-- YOUR IMAGE -->
+distance ≈ 3.6
+```
 
-    <div class="image-box">
+### Collision Check
 
-        <!-- CHANGE IMAGE NAME HERE -->
-        <img src="demo.png" alt="Circle collision demonstration">
-
-    </div>
-
-    <!-- FORMULA -->
-
-    <div class="formula-card">
-
-        <div class="formula-title">
-            Distance Formula
-        </div>
-
-        <div class="formula">
-            √((x₂ - x₁)² + (y₂ - y₁)²) ≤ r₁ + r₂
-        </div>
-
-    </div>
-
-    <!-- CIRCLE DATA -->
-
-    <div class="grid">
-
-        <div class="info-card">
-
-            <h2>📌 Circle A</h2>
-
-            <p>x = 2</p>
-            <p>y = 3</p>
-            <p>radius = 8</p>
-
-        </div>
-
-        <div class="info-card">
-
-            <h2>📌 Circle B</h2>
-
-            <p>x = 5</p>
-            <p>y = 5</p>
-            <p>radius = 9</p>
-
-        </div>
-
-    </div>
-
-    <!-- STEP BY STEP -->
-
-    <div class="step-card">
-
-        <h2>
-            🧠 Step-by-Step Calculation
-        </h2>
-
-        <div class="step">
-
-            <h3>1. Calculate X Distance</h3>
-
-            <div class="code">
-<pre>
-dx = x2 - x1
-dx = 5 - 2
-dx = 3
-</pre>
-            </div>
-
-        </div>
-
-        <div class="step">
-
-            <h3>2. Calculate Y Distance</h3>
-
-            <div class="code">
-<pre>
-dy = y2 - y1
-dy = 5 - 3
-dy = 2
-</pre>
-            </div>
-
-        </div>
-
-        <div class="step">
-
-            <h3>3. Compute Distance</h3>
-
-            <div class="code">
-<pre>
-d = Math.sqrt(3*3 + 2*2)
-d = Math.sqrt(9 + 4)
-d = Math.sqrt(13)
-d ≈ 3.6
-</pre>
-            </div>
-
-        </div>
-
-        <div class="step">
-
-            <h3>4. Compare with Radii Sum</h3>
-
-            <div class="code">
-<pre>
+```js
 3.6 <= 17
-</pre>
-            </div>
+```
 
-        </div>
+✅ Collision detected
 
-        <div class="result">
-            ✅ Collision Detected
-        </div>
+---
 
-    </div>
+# 🚀 Optimized JavaScript
 
-    <!-- FINAL JS -->
-
-    <div class="step-card">
-
-        <h2>
-            🚀 Optimized JavaScript Implementation
-        </h2>
-
-        <div class="final-code">
-<pre>
+```js
 function circleCollision(c1, c2) {
 
     const dx = c2.x - c1.x;
@@ -384,7 +74,13 @@ function circleCollision(c1, c2) {
 
     return distanceSquared <= radiusSum * radiusSum;
 }
+```
 
+---
+
+## 📦 Example
+
+```js
 const player = {
     x: 2,
     y: 3,
@@ -398,30 +94,29 @@ const enemy = {
 };
 
 console.log(circleCollision(player, enemy));
-</pre>
-        </div>
+```
 
-    </div>
+### Output
 
-    <!-- BADGES -->
+```js
+true
+```
 
-    <div class="badges">
+---
 
-        <span class="badge">🎮 Game Development</span>
+## 🎮 Use Cases
 
-        <span class="badge">⚡ Physics Engine</span>
+- Game Development
+- Physics Engines
+- Hitboxes
+- Particle Systems
+- Simulations
 
-        <span class="badge">🧠 Collision Detection</span>
+---
 
-        <span class="badge">📐 Mathematics</span>
+## ⚡ Complexity
 
-        <span class="badge">🚀 JavaScript</span>
-
-    </div>
-
-</div>
-
-</div>
-
-</body>
-</html>
+```txt
+Time Complexity: O(1)
+Space Complexity: O(1)
+```
