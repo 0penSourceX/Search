@@ -15,7 +15,8 @@ Simple circle collision detection using the distance formula.
 ## 🖼️ Demonstration
 
 <p align="center">
-  <img src="./demo.png" width="700" alt="Circle Collision Demonstration">
+ <img width="1261" height="928" alt="image" src="https://github.com/user-attachments/assets/b3033daf-c0b0-465c-980d-80f178e3dddb" />
+
 </p>
 
 ---
